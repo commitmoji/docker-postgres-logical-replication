@@ -1,0 +1,1 @@
+00 */6 * * * . /home/postgres/.profile && ~/bin/basebackup.sh 2>&1 >> ~/log/basebackup

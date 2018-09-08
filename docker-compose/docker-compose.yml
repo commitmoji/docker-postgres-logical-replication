@@ -1,0 +1,19 @@
+version: '3.2'
+services:
+  publisher:
+    build: ../publisher
+    volumes:
+      - type: bind
+        source: ../publisher/mnt/efs/db
+        target: /mnt/efs/db
+    ports:
+      - '8000:5432'
+    privileged: true
+  subscriber:
+    build: ../subscriber
+    ports:
+      - '8001:5432'
+    depends_on:
+      - publisher
+    privileged: true
+    command: ["/root/bin/wait-for-it.sh", "publisher:5432", "-s", "-t", "0", "--", "/root/bin/init.sh"]

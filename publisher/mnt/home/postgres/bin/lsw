@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+ls -Alrth /mnt/efs/db/wal_running
